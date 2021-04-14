@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import UserItem from './UserItem';
 
 class Users extends Component {
+  usersStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridGap: '1.5rem',
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +37,7 @@ class Users extends Component {
   render() {
     const { users } = this.state;
     return (
-      <div>
+      <div style={this.usersStyle}>
         {users.map((user) => (
           <UserItem key={user.id} user={user} />
         ))}
