@@ -29,7 +29,13 @@ class Users extends Component {
 
   render() {
     const { users } = this.state;
-    return <div>{users.map((user) => user.login)}</div>;
+    return (
+      <div>
+        {users.map((user) => (
+          <div key={user.id}>{user.login}</div>
+        ))}
+      </div>
+    );
   }
 }
 
