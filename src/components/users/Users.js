@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserItem from './UserItem';
 
 class Users extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Users extends Component {
     return (
       <div>
         {users.map((user) => (
-          <div key={user.id}>{user.login}</div>
+          <UserItem key={user.id} user={user} />
         ))}
       </div>
     );
