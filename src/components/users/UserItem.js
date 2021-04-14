@@ -1,6 +1,6 @@
 /* eslint-disable  camelcase */
-/* eslint-disable  react/prop-types */
-import { PropTypes } from 'prop-types';
+/* eslint-disable  react/forbid-prop-types */
+import PropTypes from 'prop-types';
 
 const UserItem = ({ user: { login, avatar_url, html_url } }) => (
   <div className="card text-center">
@@ -22,7 +22,7 @@ const UserItem = ({ user: { login, avatar_url, html_url } }) => (
   </div>
 );
 
-UserItem.prototype = {
+UserItem.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
