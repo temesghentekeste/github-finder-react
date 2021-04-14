@@ -1,49 +1,26 @@
-import React, { Component } from 'react';
+/* eslint-disable react/forbid-prop-types */
+import PropTypes from 'prop-types';
 import UserItem from './UserItem';
 
-class Users extends Component {
-  usersStyle = {
+const Users = (props) => {
+  const usersStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
     gridGap: '1.5rem',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [
-        {
-          id: 1,
-          login: 'mojombo',
-          avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
-          html_url: 'https://github.com/mojombo',
-        },
-        {
-          id: 2,
-          login: 'defunkt',
-          avatar_url: 'https://avatars.githubusercontent.com/u/2?v=4',
-          html_url: 'https://github.com/defunkt',
-        },
-        {
-          id: 3,
-          login: 'pjhyett',
-          avatar_url: 'https://avatars.githubusercontent.com/u/3?v=4',
-          html_url: 'https://github.com/pjhyett',
-        },
-      ],
-    };
-  }
+  const { users } = props;
+  return (
+    <div style={usersStyle}>
+      {users.map((user) => (
+        <UserItem key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 
-  render() {
-    const { users } = this.state;
-    return (
-      <div style={this.usersStyle}>
-        {users.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
-    );
-  }
-}
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
+};
 
 export default Users;
