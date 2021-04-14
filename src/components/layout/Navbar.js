@@ -1,28 +1,22 @@
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/static-property-placement */
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class Navbar extends Component {
-  static defaultProps = {
-    title: 'Github Finder',
-  };
+const Navbar = ({ title, icon }) => (
+  <nav className="navbar bg-success">
+    <h1>
+      <i className={icon} />
+      {title}
+    </h1>
+  </nav>
+);
 
-  static propTypes = {
-    title: PropTypes.string,
-  };
+Navbar.defaultProps = {
+  title: 'Github Finder',
+  icon: 'fab fa-github m-1',
+};
 
-  render() {
-    const { title } = this.props;
-    return (
-      <nav className="navbar bg-success">
-        <h1>
-          <i className="fab fa-github m-1" />
-          {title}
-        </h1>
-      </nav>
-    );
-  }
-}
+Navbar.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.string,
+};
 
 export default Navbar;
