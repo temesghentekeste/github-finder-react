@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 class Search extends Component {
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -40,6 +41,13 @@ class Search extends Component {
             type="submit"
             value="Search"
             className="btn btn-dark btn-block"
+          />
+
+          <input
+            type="button"
+            value="Clear"
+            onClick={this.props.clearUsers}
+            className="btn btn-light btn-block"
           />
         </form>
       </div>
