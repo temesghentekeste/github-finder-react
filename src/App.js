@@ -3,6 +3,7 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-undef */
+/* eslint-disable max-len */
 
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -17,6 +18,7 @@ class App extends Component {
     this.state = {
       users: [],
       loading: false,
+      showClearUsers: false,
     };
   }
 
@@ -41,17 +43,18 @@ class App extends Component {
     this.setState({
       users: res.data.items,
       loading: false,
+      showClearUsers: true,
     });
   };
 
   clearUsers = () => this.setState({ users: [] })
 
   render() {
-    const { loading, users } = this.state;
+    const { loading, users, showClearUsers } = this.state;
     return (
       <div className="App">
         <Navbar />
-        <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} />
+        <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClearUsers={showClearUsers} />
         <div className="container">
           <Users loading={loading} users={users} />
         </div>
