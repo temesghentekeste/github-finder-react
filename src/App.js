@@ -9,6 +9,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
+import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
 import Search from './components/users/Search';
 import Users from './components/users/Users';
@@ -42,6 +43,7 @@ class App extends Component {
 
   searchUsers = async (text) => {
     this.setState({ loading: true });
+    console.log(text);
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`,
     );
@@ -61,6 +63,12 @@ class App extends Component {
         type,
       },
     });
+
+    setTimeout(() => {
+      this.setState({
+        showAlert: null,
+      });
+    }, 3000);
   };
 
   render() {
@@ -70,11 +78,12 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
+        {showAlert && showAlert.msg && showAlert.type && <Alert alert={showAlert} />}
         <Search
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
           showClearUsers={showClearUsers}
-          showAlert={this.setAlert}
+          setAlert={this.setAlert}
         />
         <div className="container">
           <Users loading={loading} users={users} />
@@ -83,4 +92,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
