@@ -1,8 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
+/* eslint-disable react/static-property-placement */
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+  };
+
   constructor() {
     super();
     this.state = {
