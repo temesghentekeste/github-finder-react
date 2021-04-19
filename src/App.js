@@ -81,29 +81,29 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          {showAlert && showAlert.msg && showAlert.type && (
-            <Alert alert={showAlert} />
-          )}
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <>
-                  <Search
-                    searchUsers={this.searchUsers}
-                    clearUsers={this.clearUsers}
-                    showClearUsers={showClearUsers}
-                    setAlert={this.setAlert}
-                  />
-                  <div className="container">
+          <div className="container">
+            {showAlert && showAlert.msg && showAlert.type && (
+              <Alert alert={showAlert} />
+            )}
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <>
+                    <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClearUsers={showClearUsers}
+                      setAlert={this.setAlert}
+                    />
                     <Users loading={loading} users={users} />
-                  </div>
-                </>
-              )}
-            />
-            <Route exact path="/about" component={About} />
-          </Switch>
+                  </>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );
