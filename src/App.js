@@ -4,6 +4,7 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
+/* eslint-disable  no-unused-vars */
 
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -19,6 +20,10 @@ class App extends Component {
       users: [],
       loading: false,
       showClearUsers: false,
+      showAlert: {
+        msg: '',
+        type: '',
+      },
     };
   }
 
@@ -49,8 +54,19 @@ class App extends Component {
 
   clearUsers = () => this.setState({ users: [], showClearUsers: false });
 
+  showAlert = (msg, type) => {
+    this.setState({
+      showAlert: {
+        msg,
+        type,
+      },
+    });
+  };
+
   render() {
-    const { loading, users, showClearUsers } = this.state;
+    const {
+      loading, users, showClearUsers, showAlert,
+    } = this.state;
     return (
       <div className="App">
         <Navbar />
@@ -58,6 +74,7 @@ class App extends Component {
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
           showClearUsers={showClearUsers}
+          showAlert={this.showAlert}
         />
         <div className="container">
           <Users loading={loading} users={users} />
