@@ -6,8 +6,9 @@
 /* eslint-disable max-len */
 /* eslint-disable  no-unused-vars */
 
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
@@ -76,19 +77,33 @@ class App extends Component {
       loading, users, showClearUsers, showAlert,
     } = this.state;
     return (
-      <div className="App">
-        <Navbar />
-        {showAlert && showAlert.msg && showAlert.type && <Alert alert={showAlert} />}
-        <Search
-          searchUsers={this.searchUsers}
-          clearUsers={this.clearUsers}
-          showClearUsers={showClearUsers}
-          setAlert={this.setAlert}
-        />
-        <div className="container">
-          <Users loading={loading} users={users} />
+      <Router>
+        <div className="App">
+          <Navbar />
+          {showAlert && showAlert.msg && showAlert.type && (
+            <Alert alert={showAlert} />
+          )}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <>
+                  <Search
+                    searchUsers={this.searchUsers}
+                    clearUsers={this.clearUsers}
+                    showClearUsers={showClearUsers}
+                    setAlert={this.setAlert}
+                  />
+                  <div className="container">
+                    <Users loading={loading} users={users} />
+                  </div>
+                </>
+              )}
+            />
+          </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
