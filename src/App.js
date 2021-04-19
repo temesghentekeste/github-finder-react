@@ -54,7 +54,7 @@ class App extends Component {
 
   clearUsers = () => this.setState({ users: [], showClearUsers: false });
 
-  showAlert = (msg, type) => {
+  setAlert = (msg, type) => {
     this.setState({
       showAlert: {
         msg,
@@ -74,7 +74,7 @@ class App extends Component {
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
           showClearUsers={showClearUsers}
-          showAlert={this.showAlert}
+          showAlert={this.setAlert}
         />
         <div className="container">
           <Users loading={loading} users={users} />
