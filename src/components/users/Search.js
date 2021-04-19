@@ -8,6 +8,10 @@ class Search extends Component {
     };
   }
 
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     const { text } = this.state;
     return (
@@ -18,7 +22,7 @@ class Search extends Component {
             name="text"
             placeholder="Search user..."
             value={text}
-            onChange={(e) => this.setState({ text: e.target.value })}
+            onChange={this.onChange}
           />
           <input
             type="submit"
