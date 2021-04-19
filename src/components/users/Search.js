@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import { Component } from 'react';
 
 class Search extends Component {
@@ -12,11 +13,16 @@ class Search extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  onSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.text);
+  };
+
   render() {
     const { text } = this.state;
     return (
       <div>
-        <form className="form">
+        <form onSubmit={this.onSubmit} className="form">
           <input
             type="text"
             name="text"
