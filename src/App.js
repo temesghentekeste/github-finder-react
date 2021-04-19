@@ -14,6 +14,7 @@ import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
 import Search from './components/users/Search';
 import Users from './components/users/Users';
+import About from './components/pages/About';
 
 class App extends Component {
   constructor() {
@@ -101,6 +102,7 @@ class App extends Component {
                 </>
               )}
             />
+            <Route exact path="/about" component={About} />
           </Switch>
         </div>
       </Router>
