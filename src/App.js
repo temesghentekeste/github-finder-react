@@ -5,6 +5,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 /* eslint-disable  no-unused-vars */
+/* eslint-disable  react/jsx-props-no-spreading */
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -15,12 +16,14 @@ import Navbar from './components/layout/Navbar';
 import Search from './components/users/Search';
 import Users from './components/users/Users';
 import About from './components/pages/About';
+import User from './components/users/User';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       users: [],
+      user: {},
       loading: false,
       showClearUsers: false,
       showAlert: {
@@ -56,6 +59,18 @@ class App extends Component {
     });
   };
 
+  getUser = async (username) => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`,
+    );
+    this.setState({
+      user: res.data,
+      loading: false,
+      showClearUsers: true,
+    });
+  };
+
   clearUsers = () => this.setState({ users: [], showClearUsers: false });
 
   setAlert = (msg, type) => {
@@ -75,7 +90,7 @@ class App extends Component {
 
   render() {
     const {
-      loading, users, showClearUsers, showAlert,
+      loading, users, user, showClearUsers, showAlert,
     } = this.state;
     return (
       <Router>
@@ -99,6 +114,18 @@ class App extends Component {
                     />
                     <Users loading={loading} users={users} />
                   </>
+                )}
+              />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    loading={loading}
+                  />
                 )}
               />
               <Route exact path="/about" component={About} />
