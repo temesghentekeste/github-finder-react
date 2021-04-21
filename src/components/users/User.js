@@ -16,12 +16,14 @@ class User extends Component {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    const { getUser } = this.props;
+    const { getUser, getUserRepos } = this.props;
     const { login } = this.props.match.params;
     getUser(login);
+    getUserRepos(login);
   }
 
   render() {
