@@ -8,6 +8,7 @@
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 
 class User extends Component {
@@ -42,9 +43,9 @@ class User extends Component {
     } = user;
 
     return (
-      <div>
-        <h1>{name}</h1>
-      </div>
+      <>
+        <Link to="/" className="btn btn-light">Back To Search</Link>
+      </>
     );
   }
 }
