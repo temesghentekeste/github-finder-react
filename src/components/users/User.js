@@ -10,11 +10,13 @@ import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
+import Repos from '../repos/Repos';
 
 class User extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
     getUser: PropTypes.func.isRequired,
     getUserRepos: PropTypes.func.isRequired,
   };
@@ -27,7 +29,7 @@ class User extends Component {
   }
 
   render() {
-    const { user, loading } = this.props;
+    const { user, loading, repos } = this.props;
     if (loading) return <Spinner />;
     const {
       name,
@@ -134,6 +136,7 @@ class User extends Component {
             {public_gists}
           </div>
         </div>
+        <Repos repos={repos} />
       </>
     );
   }
