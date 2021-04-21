@@ -1,15 +1,19 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable react/static-property-placement */
 /* eslint-disable react/prop-types */
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable camelcase */
 /* eslint-disable  no-unused-vars */
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import Spinner from '../layout/Spinner';
 
 class User extends Component {
   static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
     getUser: PropTypes.func.isRequired,
   };
 
@@ -21,6 +25,7 @@ class User extends Component {
 
   render() {
     const { user, loading } = this.props;
+    if (loading) return <Spinner />;
     const {
       name,
       avatar_url,
