@@ -76,8 +76,8 @@ const App = () => {
         <div className="App">
           <Navbar />
           <div className="container">
-            {showAlert && showAlert.msg && showAlert.type && (
-              <Alert alert={showAlert} />
+            {alert && alert.msg && alert.type && (
+              <Alert alert={alert} />
             )}
             <Switch>
               <Route
@@ -89,7 +89,7 @@ const App = () => {
                       searchUsers={searchUsers}
                       clearUsers={clearUsers}
                       showClearUsers={showClearUsers}
-                      setAlert={setAlert}
+                      setAlert={showAlert}
                     />
                     <Users loading={loading} users={users} />
                   </>
