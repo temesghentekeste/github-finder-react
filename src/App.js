@@ -1,5 +1,8 @@
 /* eslint-disable  no-unused-vars */
 /* eslint-disable  react/jsx-props-no-spreading */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-multiple-empty-lines */
+/* eslint-disable comma-dangle */
 
 import { useState } from 'react';
 import axios from 'axios';
@@ -21,20 +24,10 @@ const App = () => {
   const [showClearUsers, setShowClearUsers] = useState(false);
   const [alert, setAlert] = useState({ msg: '', type: '' });
 
-  const searchUsers = async (text) => {
-    setLoading(true);
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`,
-    );
-    setUsers(res.data.items);
-    setLoading(false);
-    setShowClearUsers(true);
-  };
-
   const getUser = async (username) => {
     setLoading(true);
     const res = await axios.get(
-      `https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`,
+      `https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`
     );
     setUser(res.data);
     setLoading(false);
@@ -44,7 +37,7 @@ const App = () => {
   const getUserRepos = async (username) => {
     setLoading(true);
     const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`,
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}}`
     );
     setRepos(res.data);
     setLoading(false);
@@ -76,9 +69,7 @@ const App = () => {
         <div className="App">
           <Navbar />
           <div className="container">
-            {alert && alert.msg && alert.type && (
-              <Alert alert={alert} />
-            )}
+            {alert && alert.msg && alert.type && <Alert alert={alert} />}
             <Switch>
               <Route
                 exact
@@ -86,7 +77,6 @@ const App = () => {
                 render={(props) => (
                   <>
                     <Search
-                      searchUsers={searchUsers}
                       clearUsers={clearUsers}
                       showClearUsers={showClearUsers}
                       setAlert={showAlert}
