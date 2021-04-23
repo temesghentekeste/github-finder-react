@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Alert from './components/layout/Alert';
@@ -8,38 +7,23 @@ import Users from './components/users/Users';
 import About from './components/pages/About';
 import User from './components/users/User';
 import GithubState from './context/github/GithubState';
+import AlertState from './context/alert/AlertState';
 
-const App = () => {
-  const [alert, setAlert] = useState({ msg: '', type: '' });
-
-  const showAlert = (msg, type) => {
-    setAlert({
-      msg,
-      type,
-    });
-
-    setTimeout(() => {
-      setAlert({
-        msg: '',
-        type: '',
-      });
-    }, 3000);
-  };
-
-  return (
-    <GithubState>
+const App = () => (
+  <GithubState>
+    <AlertState>
       <Router>
         <div className="App">
           <Navbar />
           <div className="container">
-            {alert && alert.msg && alert.type && <Alert alert={alert} />}
+            <Alert />
             <Switch>
               <Route
                 exact
                 path="/"
                 render={() => (
                   <>
-                    <Search setAlert={showAlert} />
+                    <Search />
                     <Users />
                   </>
                 )}
@@ -50,8 +34,8 @@ const App = () => {
           </div>
         </div>
       </Router>
-    </GithubState>
-  );
-};
+    </AlertState>
+  </GithubState>
+);
 
 export default App;
