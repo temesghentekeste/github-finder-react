@@ -44,10 +44,7 @@ const App = () => {
     setShowClearUsers(true);
   };
 
-  const clearUsers = () => {
-    setUsers([]);
-    setShowClearUsers(false);
-  };
+ 
 
   const showAlert = (msg, type) => {
     setAlert({
@@ -77,8 +74,6 @@ const App = () => {
                 render={(props) => (
                   <>
                     <Search
-                      clearUsers={clearUsers}
-                      showClearUsers={showClearUsers}
                       setAlert={showAlert}
                     />
                     <Users />

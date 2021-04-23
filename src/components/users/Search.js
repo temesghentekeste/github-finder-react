@@ -1,11 +1,10 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import GithubContext from '../../context/github/githubContext';
 
-const Search = ({ showClearUsers, clearUsers, setAlert }) => {
-  const githubContext = useContext(GithubContext);
+const Search = ({ setAlert }) => {
+  const { users, searchUsers, clearUsers } = useContext(GithubContext);
   const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -18,7 +17,7 @@ const Search = ({ showClearUsers, clearUsers, setAlert }) => {
     if (text === '') {
       setAlert('Please enter something.', 'light');
     } else {
-      githubContext.searchUsers(text);
+      searchUsers(text);
       setText('');
     }
   };
@@ -39,7 +38,7 @@ const Search = ({ showClearUsers, clearUsers, setAlert }) => {
           className="btn btn-dark btn-block"
         />
 
-        {showClearUsers && (
+        {users.length > 0 && (
           <input
             type="button"
             value="Clear"
@@ -53,8 +52,6 @@ const Search = ({ showClearUsers, clearUsers, setAlert }) => {
 };
 
 Search.propTypes = {
-  clearUsers: PropTypes.func.isRequired,
-  showClearUsers: PropTypes.bool.isRequired,
   setAlert: PropTypes.func.isRequired,
 };
 
