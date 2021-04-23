@@ -1,15 +1,19 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable camelcase */
 
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import Repos from '../repos/Repos';
+import GithubContext from '../../context/github/githubContext';
 
 const User = ({
-  user, loading, repos, getUser, getUserRepos, match,
+  match,
 }) => {
+  const {
+    user, getUser, repos, getUserRepos, loading,
+  } = useContext(GithubContext);
   useEffect(() => {
     const { login } = match.params;
     getUser(login);
@@ -128,12 +132,7 @@ const User = ({
 };
 
 User.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  repos: PropTypes.array.isRequired,
-  getUser: PropTypes.func.isRequired,
-  getUserRepos: PropTypes.func.isRequired,
 };
 
 export default User;
