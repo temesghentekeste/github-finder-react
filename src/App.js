@@ -1,9 +1,3 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable no-undef */
-/* eslint-disable max-len */
 /* eslint-disable  no-unused-vars */
 /* eslint-disable  react/jsx-props-no-spreading */
 
