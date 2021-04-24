@@ -2,6 +2,9 @@
 
 GitHub Finder is a SPA developed using React. It has two version: version one developed using class components whereas the second version developed using Hooks and the Context API. Each version allows end users to search a particular GitHub user. In addition to that it allows someone see the latest repos, followers, followings and other profile info of a GitHub user.
 
+## 🔴 Screenshot
+![screenshot](./public/screenshot.gif)
+
 ## 🔴 Live Demo
 
 **Click [here](https://github-finder-react-temesghen.herokuapp.com/) in order to see a Live Demo of this project.**
