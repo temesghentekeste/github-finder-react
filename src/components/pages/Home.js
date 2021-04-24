@@ -3,8 +3,8 @@ import Search from '../users/Search';
 
 const Home = () => (
   <>
-    <Users />
     <Search />
+    <Users />
   </>
 );
 

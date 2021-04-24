@@ -33,11 +33,13 @@ const Search = () => {
           value={text}
           onChange={onChange}
         />
-        <input
-          type="submit"
-          value="Search"
-          className="btn btn-dark btn-block"
-        />
+        {users.length === 0 && (
+          <input
+            type="submit"
+            value="Search"
+            className="btn btn-dark btn-block"
+          />
+        )}
 
         {users.length > 0 && (
           <input
