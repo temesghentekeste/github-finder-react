@@ -1,17 +1,18 @@
-/* eslint-disable react/forbid-prop-types */
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import AlertContext from '../../context/alert/alertContext';
 
-const Alert = ({ alert: { msg, type } }) => alert && (
-<div className={`alert alert-${type}`}>
-  <div className="fas fa-info-circle">
-    {'  '}
-    {msg}
-  </div>
-</div>
-);
-
-Alert.propTypes = {
-  alert: PropTypes.object.isRequired,
+const Alert = () => {
+  const { alert } = useContext(AlertContext);
+  return (
+    alert && (
+      <div className={`alert alert-${alert.type}`}>
+        <div className="fas fa-info-circle">
+          {'  '}
+          {alert.msg}
+        </div>
+      </div>
+    )
+  );
 };
+
 export default Alert;

@@ -1,9 +1,12 @@
-/* eslint-disable react/forbid-prop-types */
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import Spinner from '../layout/Spinner';
 import UserItem from './UserItem';
+import GithubContext from '../../context/github/githubContext';
 
-const Users = ({ users, loading }) => {
+const Users = () => {
+  const githubContext = useContext(GithubContext);
+  const { users, loading } = githubContext;
+
   const usersStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
@@ -20,11 +23,6 @@ const Users = ({ users, loading }) => {
       ))}
     </div>
   );
-};
-
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default Users;
